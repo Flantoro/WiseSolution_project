@@ -9,7 +9,7 @@ describe('GitHub Test Cases', () => {
         await browser.url('https://github.com/');
     })
 
-    it('Open the "About" page from the footer.', async () => {
+    it('First test', async () => {
         await MainPage.pressSingUpButton();
 
         await expect(await SignUpPage.welcomeText).toBeDisplayed();
