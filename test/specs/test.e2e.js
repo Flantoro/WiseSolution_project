@@ -12,7 +12,7 @@ describe('GitHub Test Cases', () => {
         await browser.url('https://github.com/');
     })
 
-    it('First test', async () => {
+    it('SignUp form', async () => {
         await MainPage.pressSingUpButton();
 
         await expect(await SignUpPage.welcomeText).toBeDisplayed();
@@ -32,7 +32,7 @@ describe('GitHub Test Cases', () => {
         await SignUpPage.pressEmailCheckContinue();
     })
 
-    it('Second test', async () => {
+    it('Enterprise button', async () => {
         await MainPage.scrollToBottomText();
         
 
@@ -45,7 +45,7 @@ describe('GitHub Test Cases', () => {
         await EnterprisePage.clickOnTheEnterpriseButton();
     })
 
-    it('Third test', async () => {
+    it('Subscribe for a newsletters', async () => {
         await MainPage.scrollToTheBottomSubscriveButton();
         await expect(MainPage.subscribeBottomButton).toBeDisplayed();
         await expect(MainPage.subscribeBottomButton).toBeClickable();
@@ -62,7 +62,7 @@ describe('GitHub Test Cases', () => {
         await expect(ResourcesPage.congratulationMessage).toHaveText("Thanks for subscribing!");
     })
 
-    it('Fourth test', async () => {
+    it('Search for a repositories', async () => {
         let value = "hello";
         await MainPage.clickOnTheInputFieldButton();
         await MainPage.fillTheinputField(value);
@@ -74,7 +74,7 @@ describe('GitHub Test Cases', () => {
         await expect(webElement).toHaveHrefContaining(value);
     })
 
-    it('Fifth test', async () => {
+    it('Pricing page', async () => {
         await MainPage.clickOnThePricingButton();
 
         await expect(PricingPage.mainTitle).toBeDisplayed();
