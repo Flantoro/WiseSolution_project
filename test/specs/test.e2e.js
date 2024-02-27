@@ -12,7 +12,7 @@ describe('GitHub Test Cases', () => {
         await browser.url('https://github.com/');
     })
 
-    xit('First test', async () => {
+    it('First test', async () => {
         await MainPage.pressSingUpButton();
 
         await expect(await SignUpPage.welcomeText).toBeDisplayed();
@@ -32,7 +32,7 @@ describe('GitHub Test Cases', () => {
         await SignUpPage.pressEmailCheckContinue();
     })
 
-    xit('Second test', async () => {
+    it('Second test', async () => {
         await MainPage.scrollToBottomText();
         
 
@@ -45,7 +45,7 @@ describe('GitHub Test Cases', () => {
         await EnterprisePage.clickOnTheEnterpriseButton();
     })
 
-    xit('Third test', async () => {
+    it('Third test', async () => {
         await MainPage.scrollToTheBottomSubscriveButton();
         await expect(MainPage.subscribeBottomButton).toBeDisplayed();
         await expect(MainPage.subscribeBottomButton).toBeClickable();
@@ -62,8 +62,16 @@ describe('GitHub Test Cases', () => {
         await expect(ResourcesPage.congratulationMessage).toHaveText("Thanks for subscribing!");
     })
 
-    xit('Fourth test', async () => {
-
+    it('Fourth test', async () => {
+        let value = "hello";
+        await MainPage.clickOnTheInputFieldButton();
+        await MainPage.fillTheinputField(value);
+        await browser.pause(2000);
+        await browser.keys("\uE007");
+        await browser.pause(2000);
+        await expect(browser).toHaveUrl("https://github.com/search?q=hello&type=repositories");
+        let webElement = await $("[href='/greyli/helloflask']");
+        await expect(webElement).toHaveHrefContaining(value);
     })
 
     it('Fifth test', async () => {
