@@ -10,7 +10,8 @@ describe('GitHub Test Cases', () => {
 
     const passwordInput = "diofeurifhuier42323!";
     const usernameInput = "Flantoro1";
-
+    const value = "hello";
+    
     beforeEach(async ()=> {
         await browser.setWindowSize(1280, 1024);
         await browser.url('https://github.com/');
@@ -64,7 +65,6 @@ describe('GitHub Test Cases', () => {
     })
 
     it('Search for a repositories', async () => {
-        let value = "hello";
         await MainPage.clickOnTheInputFieldButton();
         await MainPage.fillTheinputField(value);
 
