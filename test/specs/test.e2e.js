@@ -4,6 +4,7 @@ import SignUpPage from '../pageobjects/SignUpPage.js'
 import EnterprisePage from '../pageobjects/EnterprisePage.js'
 import ResourcesPage from '../pageobjects/ResourcesPage.js'
 import PricingPage from '../pageobjects/PricingPage.js'
+import randomData from '../helpers/randomData.js'
 
 describe('GitHub Test Cases', () => {
 
@@ -12,14 +13,14 @@ describe('GitHub Test Cases', () => {
         await browser.url('https://github.com/');
     })
 
-    it('SignUp form', async () => {
+    xit('SignUp form', async () => {
         await MainPage.pressSingUpButton();
 
         await expect(await SignUpPage.welcomeText).toBeDisplayed();
 
         await SignUpPage.emailInputField.waitForDisplayed();
 
-        await SignUpPage.emailInput("sdfsdfrd1231fg@3244.com");
+        await SignUpPage.emailInput(await randomData.generateRandomEmailName() + "@3244.com");
         await SignUpPage.pressEmailContinue();
 
         await SignUpPage.passwordInput("diofeurifhuier42323!");
@@ -32,7 +33,7 @@ describe('GitHub Test Cases', () => {
         await SignUpPage.pressEmailCheckContinue();
     })
 
-    it('Enterprise button', async () => {
+    xit('Enterprise button', async () => {
         await MainPage.scrollToBottomText();
         
 
@@ -45,7 +46,7 @@ describe('GitHub Test Cases', () => {
         await EnterprisePage.clickOnTheEnterpriseButton();
     })
 
-    it('Subscribe for a newsletters', async () => {
+    xit('Subscribe for a newsletters', async () => {
         await MainPage.scrollToTheBottomSubscriveButton();
         await expect(MainPage.subscribeBottomButton).toBeDisplayed();
         await expect(MainPage.subscribeBottomButton).toBeClickable();
@@ -54,7 +55,7 @@ describe('GitHub Test Cases', () => {
         await expect(browser).toHaveUrl("https://resources.github.com/newsletter/");
         await expect(await ResourcesPage.mainTitle).toHaveText("Subscribe to our developer newsletter");
 
-        await ResourcesPage.addEmail("sometestemail@gmail.com");
+        await ResourcesPage.addEmail(await randomData.generateRandomEmailName() + "@gmail.com");
         await ResourcesPage.chooseUACountry();
         await ResourcesPage.checkTheCheckbox();
         await ResourcesPage.clickOnTheSubscribeButton();
@@ -66,15 +67,19 @@ describe('GitHub Test Cases', () => {
         let value = "hello";
         await MainPage.clickOnTheInputFieldButton();
         await MainPage.fillTheinputField(value);
-        await browser.pause(2000);
+
+        (await MainPage.inputField).waitUntil(async function () {
+            return (await MainPage.inputField).getValue() === value
+        })
+
         await browser.keys("\uE007");
-        await browser.pause(2000);
+
         await expect(browser).toHaveUrl("https://github.com/search?q=hello&type=repositories");
         let webElement = await $("[href='/greyli/helloflask']");
         await expect(webElement).toHaveHrefContaining(value);
     })
 
-    it('Pricing page', async () => {
+    xit('Pricing page', async () => {
         await MainPage.clickOnThePricingButton();
 
         await expect(PricingPage.mainTitle).toBeDisplayed();

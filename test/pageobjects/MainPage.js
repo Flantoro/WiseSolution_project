@@ -49,7 +49,7 @@ class MainPage {
     
     async fillTheinputField(value) {
         (await this.inputField).setValue(value);
-    }
+    }  
 
 }
 
