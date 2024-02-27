@@ -52,6 +52,8 @@ class MainPage {
   }
 
   async clickOnTheBottomSubscribeButton() {
+    await expect(this.subscribeBottomButton).toBeDisplayed();
+    await expect(this.subscribeBottomButton).toBeClickable();
     (await this.subscribeBottomButton).click();
   }
 
