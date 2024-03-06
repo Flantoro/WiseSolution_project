@@ -87,4 +87,8 @@ describe('GitHub Test Cases', () => {
         await PricingPage.clickOnCompareAllFeaturesButton();
         await expect(PricingPage.compareFeaturesTitle).toBeDisplayedInViewport();
     })
+
+    it('Pricing page', async () => {
+        
+    })
 })
