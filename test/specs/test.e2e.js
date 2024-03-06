@@ -85,7 +85,6 @@ describe('GitHub Test Cases', () => {
         await expect(PricingPage.mainTitle).toBeDisplayed();
         await PricingPage.scrollToCompareAllFeaturesButton();
         await PricingPage.clickOnCompareAllFeaturesButton();
-        await browser.pause(1000);
         await expect(PricingPage.compareFeaturesTitle).toBeDisplayedInViewport();
     })
 })
