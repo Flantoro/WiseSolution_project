@@ -1,72 +1,73 @@
-import { expect } from "@wdio/globals";
+class SignUpPage{
 
-class SignUpPage {
-  get welcomeText() {
-    return $("[data-target='typing-effect.content']");
-  }
-  get emailInputField() {
-    return $("[id='email']");
-  }
-  get emailContinueButton() {
-    return $("[data-continue-to='password-container']");
-  }
-  get passwordInputField() {
-    return $("[id='password']");
-  }
-  get passwordContinueButton() {
-    return $("[data-continue-to='username-container']");
-  }
-  get usernameInputField() {
-    return $("[id='login']");
-  }
-  get usernameContinueButton() {
-    return $("[data-continue-to='opt-in-container']");
-  }
-  get emailNotificationCheckbox() {
-    return $(
-      "[class='color-fg-on-emphasis f4 text-mono text-normal position-relative pl-2']"
-    );
-  }
-  get emailNotificationContinueButton() {
-    return $("[data-continue-to='captcha-and-submit-container']");
+  get getEmailValidationMessage(){
+      return $('[id="email_message"]');
   }
 
-  async emailInput(value) {
-    (await this.emailInputField).setValue(value);
+  get getMinPasswordValidationMessage(){
+      return $('[id="passwordMinLength"]');
   }
 
-  async pressEmailContinue() {
-    await this.emailContinueButton.waitForClickable();
-    (await this.emailContinueButton).click();
+  get getRecaptchaError(){
+      return $('[aria-describedby="error"]');
   }
 
-  async passwordInput(value) {
-    await (await this.passwordInputField).waitForDisplayed();
-    (await this.passwordInputField).setValue(value);
+  get getConditionsTitle(){
+      return $('[contenttype="heroOverview"] h1');
   }
 
-  async pressPasswordContinue() {
-    await this.passwordContinueButton.waitForClickable();
-    (await this.passwordContinueButton).click();
+  get getFirstNameValidationMessage(){
+      return $('[id="first_name_message"]');
   }
 
-  async usernameInput(value) {
-    await this.usernameInputField.setValue(value);
+  get getLastNameValidationMessage(){
+      return $('[id="last_name_message"]');
   }
 
-  async pressUsernameContinue() {
-    await this.usernameContinueButton.waitForClickable();
-    (await this.usernameContinueButton).click();
+  get getPasswordValidationMessage(){
+      return $('[id="password_message"]');
   }
 
-  async emailNotificationCheck() {
-    await this.emailNotificationCheckbox.waitForClickable();
-    (await this.emailNotificationCheckbox).click();
+  get getTermsAndConditionsValidationMessage(){
+      return $('[id="terms_and_conditions_message"]');
   }
 
-  async pressEmailCheckContinue() {
-    await this.emailNotificationContinueButton.waitForClickable();
-    (await this.emailNotificationContinueButton).click();
+  get getEmailInput(){
+      return $('[id="email"]');
+  }
+
+  async fillEmailInput(email){
+    (await $('[id="email"]')).setValue(email);
+  }
+
+  async fillFirstNameInput(firstName){
+    (await $('[id="first_name"]')).setValue(firstName);
+  }
+
+  async fillLastNameInput(lastName){
+    (await $('[id="last_name"]')).setValue(lastName);
+  }
+
+  async fillPasswordInput(password){
+    (await $('[id="password"]')).setValue(password);
+  }
+
+  async checkTermsAndConditionsCheckbox(){
+    (await $('[id="terms_and_conditions"]')).click();
+  }
+
+  async clickSignUpButton(){
+    await $('[type="submit"]').click();
+  }
+
+  async doubleClickSignUpButton(){
+      $('[type="submit"]').first().click();
+      cy.wait(100);
+      $('[type="submit"]').first().click();
+  }
+
+  async clickTermsAndConditionsButton(){
+      $('[for="terms_and_conditions"] a').first().invoke('removeAttr', 'target').click();
   }
 }
 

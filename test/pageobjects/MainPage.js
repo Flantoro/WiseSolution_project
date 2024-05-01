@@ -1,73 +1,97 @@
-import { expect } from "@wdio/globals";
-
 class MainPage {
-  get signUpButton() {
-    return $(
-      "[href='/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home']"
-    );
-  }
-  get inputFieldButton() {
-    return $("[class='flex-1'][data-target='qbsearch-input.inputButtonText']");
-  }
-  get inputField() {
-    return $("[name='query-builder-test']");
-  }
-  get pricingButton() {
-    return $("nav [href='/pricing']");
-  }
-  get bottomText() {
-    return $("[class='h2-mktg mb-5']");
-  }
-  get bottomLink() {
-    return $(
-      "[href='/organizations/enterprise_plan?ref_cta=Start+a+free+enterprise+trial&ref_loc=Home+campaign+hero&ref_page=%2F']"
-    );
-  }
-  get subscribeBottomButton() {
-    return $("[class='btn-mktg mb-4 btn-muted-mktg']");
+
+  get getDownloadFullCoverageText(){
+      return $('main div div div p').first();
   }
 
-  async pressSingUpButton() {
-    (await this.signUpButton).click();
+  get getOurNetworkFeauresSection(){
+      return $('[contenttype="sectionTextCards"]');
   }
 
-  async scrollToBottomText() {
-    (await this.bottomText).scrollIntoView();
+  get getResourcesButton(){
+      return $('[id="radix-:Rmljm:"]');
   }
 
-  async scrollToTheBottomSubscriveButton() {
-    (await this.subscribeBottomButton).scrollIntoView();
+  get getComparePricingSection(){
+      return $('[data-state="open"] p').eq(1);
   }
 
-  async checkIfBottomLinkIsVisible() {
-    (await this.bottomLink).isDisplayedInViewport();
+  async scrollToComparePricingSection(){
+      this.getComparePricingSection.scrollIntoView();
   }
 
-  async checkIfBottomTextIsVisible() {
-    (await this.bottomText).isDisplayedInViewport();
+  async clickResourcesButton(){
+      this.getResourcesButton.realClick();
   }
 
-  async clickOnTheBottomLink() {
-    (await this.bottomLink).click();
+  async clickArticleButton(){
+      $('[href="/resources/enterprise-cloud-data-storage"]').click();
   }
 
-  async clickOnTheBottomSubscribeButton() {
-    await expect(this.subscribeBottomButton).toBeDisplayed();
-    await expect(this.subscribeBottomButton).toBeClickable();
-    (await this.subscribeBottomButton).click();
+  async clickBlogButton(){
+      $('[href="/resources"]').first().click();
   }
 
-  async clickOnThePricingButton() {
-    (await this.pricingButton).click();
+  async scrollToOurNetworkFeaturesSection(){
+      this.getOurNetworkFeauresSection.scrollIntoView();
   }
 
-  async clickOnTheInputFieldButton() {
-    (await this.inputFieldButton).click();
+  async scrollToOurNetworkButton(){
+      $('footer [href="/our-network"]').scrollIntoView();
   }
 
-  async fillTheinputField(value) {
-    (await this.inputField).setValue(value);
+  async scrollToEmailInput(){
+      $('[id="email"]').scrollIntoView();
   }
+
+  async clickOurNetworkButton(){
+      $('footer [href="/our-network"]').click();
+  }
+
+  async scollToGlobalCoverageButton(){
+      $('footer [href="/global-coverage"]').scrollIntoView();
+  }
+
+  async clickGlobalCoverageButton(){
+      $('footer [href="/global-coverage"]').click();
+  }
+
+  async scrollToExploreText(){
+      $('[action="/sign-up"]').scrollIntoView();
+  }
+
+  async clickAcceptCookies(){
+      $('[id="onetrust-accept-btn-handler"]').click();
+  }
+
+  async clickSolutionsButton(){
+      $('[href="/solutions"]').first().click();
+  }
+
+  async clickContactUsButton(){
+      $('[href="/contact-us"]').first().click();
+  }
+
+  async clickSignUpButton(){
+      $('[id="header-sign-up"]').click();
+  }
+
+  async fillEmailInput(email){
+      $('[id="email"]').setValue(email);
+  }
+
+  async clickBottomSignUpButton(){
+      $('[action="/sign-up"] button').first().click();
+  }
+
+  async scrollToTelnyxVSTwilioButton(){
+      $('[href="/the-better-twilio-alternative"]').scrollIntoView();
+  }
+
+  async clickTelnyxVSTwilioButton(){
+      $('[href="/the-better-twilio-alternative"]').click();
+  }
+
 }
 
 export default new MainPage();
